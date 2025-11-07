@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+
+# 가상환경
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 환경 변수 (보안)
+.env
+*.env.local
+# 예외: config/main.env는 템플릿이므로 포함
+!config/main.env
+
+# 로그
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
