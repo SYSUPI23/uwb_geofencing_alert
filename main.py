@@ -278,7 +278,7 @@ class UWBCollector:
             })
     
     async def _send_buzzer_vibration(self, tag_id: int):
-        """별도 WebSocket으로 부저/진동 제어 (서교공 방식)"""
+        """별도 WebSocket으로 부저/진동 제어"""
         try:
             logger.info(f"📡 부저/진동 WebSocket 연결 시작...")
             
@@ -354,16 +354,16 @@ class UWBCollector:
         app_state.dashboard_clients -= disconnected
     
     async def connect(self):
-        """WebSocket 연결 (서교공 방식)"""
+        """WebSocket 연결"""
         try:
             logger.info(f"🔌 Connecting to ws://{self.host}:{self.port}")
             self.websocket = await websockets.connect(
                 f"ws://{self.host}:{self.port}",
-                subprotocols=['localSensePush-protocol'],  # 서교공과 동일!
+                subprotocols=['localSensePush-protocol'],
                 ping_interval=30,
                 ping_timeout=10
             )
-            logger.info("✅ WebSocket connected successfully (서교공 방식)")
+            logger.info("✅ WebSocket connected successfully")
             return True
         except Exception as e:
             logger.error(f"❌ Connection failed: {e}")
@@ -385,7 +385,7 @@ class UWBCollector:
             return True
     
     async def collect_realtime_data(self):
-        """실시간 위치 데이터 수신 (서교공 방식)"""
+        """실시간 위치 데이터 수신"""
         if not self.websocket:
             return
         
@@ -470,9 +470,9 @@ async def lifespan(app: FastAPI):
     for attempt in range(1, max_retries + 1):
         logger.info(f"🔄 WebSocket 연결 시도 {attempt}/{max_retries}...")
         if await app_state.uwb_collector.connect():
-            # 인증 수행 (서교공 방식)
+            # 인증 수행
             await app_state.uwb_collector.authenticate()
-            logger.info("🔓 서교공 방식 연결 & 인증 성공!")
+            logger.info("🔓 인증 성공!")
             # 백그라운드에서 데이터 수신 시작
             asyncio.create_task(app_state.uwb_collector.collect_realtime_data())
             break
