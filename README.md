@@ -519,16 +519,6 @@ pip install fastapi uvicorn[standard]
 
 ---
 
-## 참고 프로젝트
-
-이 시스템은 다음 프로젝트의 검증된 로직을 기반으로 합니다:
-
-- **`sieun_fall`**: 0x81 프레임 파싱 로직
-- **`main_collision_detection`**: WebSocket 연결 및 인증
-- **`trajectory_code`**: 실시간 데이터 처리 구조
-
----
-
 ## 📜 License
 
 This project is licensed under the MIT License.
